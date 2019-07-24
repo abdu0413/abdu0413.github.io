@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>responsive website</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+<style>
+body {
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f2f2f2;
+}
+img {
+  width: 100%; /* need to overwrite inline dimensions */
+  height: auto;
+}
+h2 {
+  margin-bottom: .5em;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 0.5em;
+}
+
+
+/* hover styles */
+.gallery-listing {
+  position: relative;
+}
+
+.gallery-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.gallery-image img {
+  filter: blur(0px);
+  transition: filter 0.3s ease-in;
+  transform: scale(1.1);
+}
+
+.gallery-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .5s;
+  background: rgba(90,0,10,0.4);
+  color: white;
+  
+  /* position the text in t’ middle*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-listing:hover .gallery-title {
+  opacity: 1;
+}
+
+.gallery-listing:hover .gallery-image img {
+  filter: blur(2px);
+}
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color:rgba(0,0,0,0.7);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* for touch screen devices */
+@media (hover: none) { 
+  .gallery-title {
+    opacity: 1;
+  }
+  .gallery-image img {
+    filter: blur(2px);
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+</style>
+</head>
+<body>
+<h2 align="center" style="margin-bottom: 1%;">Food Gallery</h2>
+<div class="grid-container example" id="i0">
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="1.jpg" onclick="myFunction('1.jpg')" > Burger  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i2" ></a>
+          <div class="text-block">
+             <h4>Burger</h4>
+           </div>
+      </div>
+    </article>
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="2.jpg" onclick="myFunction('2.jpg')" > Pizza  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i4" ></a>
+          <div class="text-block">
+             <h4>Pizza</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="3.jpg" onclick="myFunction('3.jpg')" > Pasta  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i6" ></a>
+          <div class="text-block">
+             <h4>Pasta</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="4.jpg" onclick="myFunction('4.jpg')" > Spaghetti  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i8" ></a>
+          <div class="text-block">
+             <h4> Spaghetti</h4>
+           </div>
+      </div>
+    </article>
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="5.jpg" onclick="myFunction('5.jpg')" > Cake  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i10" ></a>
+          <div class="text-block">
+             <h4>Cake</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="6.jpg" onclick="myFunction('6.jpg')" > Fruit Salad </a>
+      <div class="gallery-image">
+          <a class= "example" id="i12" ></a>
+           <div class="text-block">
+             <h4>Fruit Salad</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="7.jpg" onclick="myFunction('7.jpg')" > Chicken Curry  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i14" ></a>
+           <div class="text-block">
+             <h4>Chicken Curry</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="8.jpg" onclick="myFunction('8.jpg')" > Soup </a>
+      <div class="gallery-image">
+          <a class= "example" id="i16" ></a>
+          <div class="text-block">
+             <h4>Soup</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="9.jpg" onclick="myFunction('9.jpg')" >Food Court </a>
+      <div class="gallery-image">
+          <a class= "example" id="i18" ></a>
+          <div class="text-block">
+             <h4>Food Court</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="10.jpg" onclick="myFunction('10.jpg')" >Street Food  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i20" ></a>
+          <div class="text-block">
+             <h4>Street Food</h4>
+           </div>
+      </div>
+    </article> 
+  <article class="gallery-listing">
+      <a class="gallery-title example" id="11.jpg" onclick="myFunction('11.jpg')" > Lasange </a>
+      <div class="gallery-image">
+          <a class= "example" id="i22" ></a>
+          <div class="text-block">
+             <h4>Lasange</h4>
+           </div>
+      </div>
+    </article>  
+ <article class="gallery-listing">
+      <a class="gallery-title example" id="12.jpg" onclick="myFunction('12.jpg')" > Prosciutto  </a>
+      <div class="gallery-image">
+          <a class= "example" id="i24" ></a>
+          <div class="text-block">
+             <h4>Prosciutto </h4>
+           </div>
+      </div>
+    </article> 
+                        
+</div>
+
+
+<div class= "example modal" id="i25" >
+  <span class="example close" id="i26">&times</span>
+  <img class="modal-content example" id="i27">
+  <div id="caption" class="example"></div>
+</div>
+</body>
+<script type="text/javascript">
+
+  var div = document.getElementsByClassName("example");
+  div[2].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="burger" src="1.jpg"/>'; 
+  div[4].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="pizza" src="2.jpg"/>'; 
+  div[6].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="pasta" src="3.jpg"/>'; 
+  div[8].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="spaghetti" src="4.jpg"/>'; 
+  div[10].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="cake" src="5.jpg"/>'; 
+  div[12].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="fruit salad" src="6.jpg"/>'; 
+  div[14].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="chicken curry" src="7.jpg"/>'; 
+  div[16].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="soup" src="8.jpg"/>'; 
+  div[18].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="food court" src="9.jpg"/>'; 
+  div[20].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="street food" src="10.jpg"/>'; 
+  div[22].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="Lasange" src="11.jpg"/>'; 
+  div[24].innerHTML = '<img width="300" height="169" style=" height:250px;" alt="Prosciutto" src="12.jpg"/>'; 
+
+  function myFunction(imag) {
+  div[25].style.display = "block";
+  div[27].src = imag;
+  var title_id;
+  if(imag[1]=='.')  {title_id = parseInt(imag[0]);} 
+  else{title_id = imag[0]+imag[1];}
+  if(title_id == 1) {div[28].innerHTML = div[title_id].innerHTML; console.log(title_id);}
+  else{
+      title_id = (title_id*2)-1;
+      console.log(div[28]);
+      div[28].innerHTML = div[title_id].innerHTML;
+      console.log(title_id);
+  } 
+  div[26].onclick = function() { 
+   div[25].style.display = "none";
+   } 
+  window.onclick = function(event) {
+    if (event.target == div[25]) {
+         div[25].style.display = 'none';
+      } 
+  }
+  document.addEventListener('keydown', function(e) {
+    let keyCode = e.keyCode;
+    if (keyCode === 27) {
+     div[25].style.display = 'none';
+    }
+});
+}
+</script>
+</html>
